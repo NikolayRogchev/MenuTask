@@ -1,0 +1,8 @@
+.menuItems {
+    display: flex;
+    border: 1px solid blue;
+}
+
+.col {
+    flex-direction: column;
+}

@@ -1,0 +1,24 @@
+
+<div>
+    <span>@Text</span>
+    <div>@ChildContent</div>
+</div>
+
+
+
+@code {
+    [CascadingParameter(Name = "Level")]
+    public required int Level { get; set; }
+
+    [EditorRequired]
+    [Parameter]
+    public required string Text { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+}

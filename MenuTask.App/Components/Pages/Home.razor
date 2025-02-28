@@ -1,3 +1,26 @@
 ﻿@page "/"
+@using MenuTask.Components
 
 <PageTitle>Home</PageTitle>
+
+<Menu>
+    <MenuItems>
+        <MenuItem Text="Item 1">
+            <MenuItems>
+                <MenuItem Text="Item 1.1" />
+                <MenuItem Text="Item 1.2">
+                    <MenuItems>
+                        <MenuItem Text="Item 1.2.1" />
+                        <MenuItem Text="Item 1.2.2" />
+                    </MenuItems>
+                </MenuItem>
+            </MenuItems>
+        </MenuItem>
+        <MenuItem Text="Item 2">
+            <MenuItems>
+                <MenuItem Text="Item 2.1" />
+            </MenuItems>
+        </MenuItem>
+        <MenuItem Text="Item 3" />
+    </MenuItems>
+</Menu>

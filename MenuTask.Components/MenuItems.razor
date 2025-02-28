@@ -1,0 +1,19 @@
+<div class="menuItems @(Level > 0 ? "col" : "")" lvl="@Level">
+    <CascadingValue Name="Level" Value="@(Level + 1)">
+        @ChildContent
+    </CascadingValue>
+</div>
+
+@code {
+    [CascadingParameter(Name = "Level")]
+    public required int Level { get; set; }
+
+    [Parameter]
+    public required RenderFragment ChildContent { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Console.WriteLine($"OnInitialized, Level: {Level}");
+        base.OnInitialized();
+    }
+}
