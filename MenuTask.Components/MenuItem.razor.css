@@ -1,6 +1,8 @@
 .menuItem {
     cursor: pointer;
-    position: relative;
+/*        position: relative;*/
+/*    border: 1px solid green;*/
+    width: max-content;
 }
 
     .menuItem:hover {
@@ -12,18 +14,34 @@
             display: block;
         }
 
-.subMenuContainer {
-    display: flex;
-    position: relative;
-    height: auto;
+.rootMenuContainer {
+    /*    position: relative;*/
 }
 
-/*    .menuItem:hover {
-        background-color: grey;
-    }*/
+.subMenuContainer {
+    /*    position: relative;*/
+    display: flex;
+    height: auto;
+    right: 0;
+}
 
 .menuItemChild {
-    align-self: start;
     color: blue;
+    right: 0;
+    /*    position: absolute;*/
     display: none;
 }
+/*
+.rightPositioned {
+    position: absolute;
+    top: 0;
+}
+
+.leftPositioned {
+    position: absolute;
+    left: 0;
+}*/
+/*
+.relative {
+    position: relative;
+}*/

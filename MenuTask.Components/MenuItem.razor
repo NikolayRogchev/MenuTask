@@ -1,9 +1,16 @@
+@{
+    bool isRoot = Level <= 1;
+    string rootMenuItemClasses = "rootMenuContainer";
+    string subMenuItemClasses = ChildContent != null ? "subMenuContainer" : "";
 
-<div class="menuItem @(Level > 1 ? "subMenuContainer" : "")">
+}
+
+@* <div class="menuItem @(!isRoot ? "subMenuContainer" : "")"> *@
+<div class="menuItem @(isRoot ? rootMenuItemClasses : subMenuItemClasses)">
     <span class="menuItemText">@Text</span>
     @if (ChildContent != null)
     {
-        <div class="menuItemChild">@ChildContent</div>
+        <div class="menuItemChild @(isRoot ? "" : "rightPositioned")">@ChildContent</div>
     }
 </div>
 
