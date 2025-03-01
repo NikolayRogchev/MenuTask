@@ -1,0 +1,29 @@
+.menuItem {
+    cursor: pointer;
+    position: relative;
+}
+
+    .menuItem:hover {
+        background-color: grey;
+    }
+
+        .menuItem:hover > .menuItemChild {
+            color: red;
+            display: block;
+        }
+
+.subMenuContainer {
+    display: flex;
+    position: relative;
+    height: auto;
+}
+
+/*    .menuItem:hover {
+        background-color: grey;
+    }*/
+
+.menuItemChild {
+    align-self: start;
+    color: blue;
+    display: none;
+}

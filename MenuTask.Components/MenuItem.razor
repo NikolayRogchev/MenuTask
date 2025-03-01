@@ -1,7 +1,10 @@
 
-<div>
-    <span>@Text</span>
-    <div>@ChildContent</div>
+<div class="menuItem @(Level > 1 ? "subMenuContainer" : "")">
+    <span class="menuItemText">@Text</span>
+    @if (ChildContent != null)
+    {
+        <div class="menuItemChild">@ChildContent</div>
+    }
 </div>
 
 
