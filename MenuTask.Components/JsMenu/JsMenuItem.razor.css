@@ -1,0 +1,33 @@
+.menuItem {
+    cursor: pointer;
+    width: max-content;
+    padding: 1rem;
+/*    border: 1px solid green;*/
+    position: relative;
+    box-sizing: border-box;
+}
+
+    .menuItem:hover {
+        background-color: grey;
+    }
+
+        .menuItem:hover > .menuItemChild {
+            color: red;
+/*            display: block;*/
+            visibility:visible;
+        }
+
+.subMenuContainer {
+/*    display: flex;*/
+    height: auto;
+/*    right: 0;*/
+}
+
+
+.menuItemChild {
+    color: blue;
+/*    position:relative;*/
+/*    right: 0;*/
+/*    display: none;*/
+    visibility:hidden;
+}

@@ -1,0 +1,13 @@
+.menuItems {
+    display: flex;
+/*    border: 1px solid blue;*/
+    position: absolute;
+    left: 0;
+    box-sizing: border-box;
+    inset-inline-start: 0;
+}
+
+.col {
+    flex-direction: column;
+/*    left: 0;*/
+}

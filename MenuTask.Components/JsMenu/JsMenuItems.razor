@@ -1,0 +1,57 @@
+@using MenuTask.Components.Models
+@using Microsoft.JSInterop
+<div class="menuItems @(Level > 0 ? "col" : "")" lvl="@Level"
+style="top: @(top)px; left: @(left)px;">
+    <CascadingValue Name="Level" Value="Level + 1">
+        @ChildContent
+    </CascadingValue>
+</div>
+
+@code {
+    private double? top;
+    private double? left;
+
+    [Parameter]
+    public required RenderFragment ChildContent { get; set; }
+
+    [CascadingParameter(Name = "Parent")]
+    public required JsMenuItem Parent { get; set; }
+
+    [CascadingParameter(Name = "Level")]
+    public required int Level { get; set; } = 0;
+
+    [CascadingParameter(Name = "MenuBoundingBox")]
+    public required BoundingBoxClientRect MenuBoundingBox { get; set; }
+
+    [Inject]
+    public required IJSRuntime JSRuntime { get; set; }
+
+    public bool IsRoot => Level == 0;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (Parent?.SubMenuAnchor is not null && MenuBoundingBox is not null && left is null && top is null)
+        {
+            var anchor = await JSRuntime.InvokeAsync<BoundingBoxClientRect>("MyDOMGetBoundingClientRect", [Parent.SubMenuAnchor]);
+
+
+            if (Level <= 1)
+            {
+                top = (int)anchor.Height;
+                left = 0;
+            }
+            else
+            {
+                top = -(int)anchor.Height;
+                top = 0;
+                // left = (int)(anchor.Width - anchor.Left);
+                left = (int)anchor.Width;
+                // left = 0;
+            }
+
+            StateHasChanged();
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+}

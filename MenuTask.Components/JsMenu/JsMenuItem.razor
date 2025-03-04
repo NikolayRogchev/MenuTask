@@ -1,0 +1,41 @@
+@{
+    bool isRoot = Level == 0;
+    bool isFirstLevel = Level == 1;
+    string rootMenuItemClasses = "";
+    string subMenuItemClasses = ChildContent != null ? "subMenuContainer" : "";
+
+}
+
+@* <div class="menuItem @(!isRoot ? "subMenuContainer" : "")"> *@
+<div class="menuItem @(isFirstLevel ? rootMenuItemClasses : subMenuItemClasses)"
+     style="left:0;top:0;"
+     @ref="SubMenuAnchor">
+    <span class="menuItemText">@Text</span>
+    @if (ChildContent != null)
+    {
+        <CascadingValue Name="Parent" Value="@(this)">
+            <div class="menuItemChild">@ChildContent</div>
+        </CascadingValue>
+    }
+</div>
+
+
+
+@code {
+    [CascadingParameter(Name = "Level")]
+    public required int Level { get; set; }
+
+    [EditorRequired]
+    [Parameter]
+    public required string Text { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    public ElementReference SubMenuAnchor { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+}

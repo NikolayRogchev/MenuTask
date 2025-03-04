@@ -1,26 +1,26 @@
 ﻿@page "/"
-@using MenuTask.Components
+@using MenuTask.Components.JsMenu
 
 <PageTitle>Home</PageTitle>
 
-<Menu>
-    <MenuItems>
-        <MenuItem Text="Item 1">
-            <MenuItems>
-                <MenuItem Text="Item 1.1" />
-                <MenuItem Text="Item 1.2">
-                    <MenuItems>
-                        <MenuItem Text="Item 1.2.1" />
-                        <MenuItem Text="Item 1.2.2" />
-                    </MenuItems>
-                </MenuItem>
-            </MenuItems>
-        </MenuItem>
-        <MenuItem Text="Item 2">
-            <MenuItems>
-                <MenuItem Text="Item 2.1" />
-            </MenuItems>
-        </MenuItem>
-        <MenuItem Text="Item 3" />
-    </MenuItems>
-</Menu>
+<JsMenu>
+    <JsMenuItems>
+        <JsMenuItem Text="Item 1">
+            <JsMenuItems>
+                <JsMenuItem Text="Item 1.1" />
+                <JsMenuItem Text="Item 1.2">
+                    <JsMenuItems>
+                        <JsMenuItem Text="Item 1.2.1" />
+                        <JsMenuItem Text="Item 1.2.2" />
+                    </JsMenuItems>
+                </JsMenuItem>
+            </JsMenuItems>
+        </JsMenuItem>
+        <JsMenuItem Text="Item 2">
+            <JsMenuItems>
+                <JsMenuItem Text="Item 2.1" />
+            </JsMenuItems>
+        </JsMenuItem>
+        <JsMenuItem Text="Item 3" />
+    </JsMenuItems>
+</JsMenu>
