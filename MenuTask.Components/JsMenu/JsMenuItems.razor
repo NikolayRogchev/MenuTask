@@ -1,8 +1,8 @@
 @using MenuTask.Components.Models
 @using Microsoft.JSInterop
-<div class="menuItems @(Level > 0 ? "col" : "")" lvl="@Level"
-style="top: @(top)px; left: @(left)px;">
-    <CascadingValue Name="Level" Value="Level + 1">
+<div class="menuItems @(Level > 0 ? "col" : "")"
+     style="top: @(top)px; left: @(left)px;">
+    <CascadingValue Name="@(nameof(this.Level))" Value="Level + 1">
         @ChildContent
     </CascadingValue>
 </div>
@@ -14,13 +14,13 @@ style="top: @(top)px; left: @(left)px;">
     [Parameter]
     public required RenderFragment ChildContent { get; set; }
 
-    [CascadingParameter(Name = "Parent")]
+    [CascadingParameter(Name = nameof(this.Parent))]
     public required JsMenuItem Parent { get; set; }
 
-    [CascadingParameter(Name = "Level")]
+    [CascadingParameter(Name = nameof(this.Level))]
     public required int Level { get; set; } = 0;
 
-    [CascadingParameter(Name = "MenuBoundingBox")]
+    [CascadingParameter(Name = nameof(this.MenuBoundingBox))]
     public required BoundingBoxClientRect MenuBoundingBox { get; set; }
 
     [Inject]
@@ -32,8 +32,7 @@ style="top: @(top)px; left: @(left)px;">
     {
         if (Parent?.SubMenuAnchor is not null && MenuBoundingBox is not null && left is null && top is null)
         {
-            var anchor = await JSRuntime.InvokeAsync<BoundingBoxClientRect>("MyDOMGetBoundingClientRect", [Parent.SubMenuAnchor]);
-
+            var anchor = await JSRuntime.InvokeAsync<BoundingBoxClientRect>(JsFunctionNames.GetBoundingBoxClientRect, [Parent.SubMenuAnchor]);
 
             if (Level <= 1)
             {
@@ -42,11 +41,8 @@ style="top: @(top)px; left: @(left)px;">
             }
             else
             {
-                top = -(int)anchor.Height;
                 top = 0;
-                // left = (int)(anchor.Width - anchor.Left);
                 left = (int)anchor.Width;
-                // left = 0;
             }
 
             StateHasChanged();

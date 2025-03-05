@@ -1,6 +1,5 @@
 .menuItems {
     display: flex;
-/*    border: 1px solid blue;*/
     position: absolute;
     left: 0;
     box-sizing: border-box;
@@ -9,5 +8,4 @@
 
 .col {
     flex-direction: column;
-/*    left: 0;*/
 }

@@ -1,15 +1,14 @@
 ﻿@using MenuTask.Components.Models
 @using Microsoft.JSInterop
 <div style="position: relative" @ref="menuRef">
-@* <div @ref="menuRef"> *@
-    <CascadingValue Name="MenuBoundingBox" Value="MenuBoundingBox">
+    <CascadingValue Name="@nameof(this.MenuBoundingBox)" Value="MenuBoundingBox">
         @ChildContent
     </CascadingValue>
 </div>
 
 <script>
-    MyDOMGetBoundingClientRect = (element, parm) => {
-    return element.getBoundingClientRect();
+    window.getBoundingBoxClientRect = (element) => {
+        return element.getBoundingClientRect();
     }
 </script>
 
@@ -27,9 +26,9 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var boundingBox = await JSRuntime.InvokeAsync<BoundingBoxClientRect>("MyDOMGetBoundingClientRect", [menuRef]);
+        var boundingBox = await JSRuntime.InvokeAsync<BoundingBoxClientRect>(JsFunctionNames.GetBoundingBoxClientRect, [menuRef]);
 
-        if (MenuBoundingBox?.GetHashCode() != boundingBox.GetHashCode())
+        if (MenuBoundingBox != boundingBox)
         {
             MenuBoundingBox = boundingBox;
             StateHasChanged();

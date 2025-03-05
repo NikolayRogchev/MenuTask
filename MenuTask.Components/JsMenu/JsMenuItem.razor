@@ -1,16 +1,16 @@
 @{
-    bool isRoot = Level == 0;
-    bool isFirstLevel = Level == 1;
-    string rootMenuItemClasses = "";
-    string subMenuItemClasses = ChildContent != null ? "subMenuContainer" : "";
-
+    bool isRoot = Level == 1;
+    string subMenuItemClasses = "subMenuContainer shadow";
+    string arrowDown = "\u2193";
+    string arrowRight = "\u2192";
+    string arrow = isRoot ? arrowDown : arrowRight;
 }
 
-@* <div class="menuItem @(!isRoot ? "subMenuContainer" : "")"> *@
-<div class="menuItem @(isFirstLevel ? rootMenuItemClasses : subMenuItemClasses)"
+<div class="menuItem @(isRoot ? string.Empty : subMenuItemClasses)"
      style="left:0;top:0;"
      @ref="SubMenuAnchor">
     <span class="menuItemText">@Text</span>
+    <span class="arrow @(ChildContent == null ? "hidden" : string.Empty)">@arrow</span>
     @if (ChildContent != null)
     {
         <CascadingValue Name="Parent" Value="@(this)">
@@ -22,7 +22,7 @@
 
 
 @code {
-    [CascadingParameter(Name = "Level")]
+    [CascadingParameter(Name = nameof(JsMenuItems.Level))]
     public required int Level { get; set; }
 
     [EditorRequired]
